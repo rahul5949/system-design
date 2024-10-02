@@ -11,23 +11,23 @@ public class Board {
     List<List<Cell>> board;
 
 
-    public Board(int dimension){
-      this.board = new ArrayList<>();
-      for(int i = 0; i < dimension; i++){
-          this.board.add(new ArrayList<>());
-          for(int j = 0; j < dimension; j++){
-              this.board.get(i).add(new Cell(i,j));
-          }
-      }
+    public Board(int dimension) {
+        this.board = new ArrayList<>();
+        for (int i = 0; i < dimension; i++) {
+            this.board.add(new ArrayList<>());
+            for (int j = 0; j < dimension; j++) {
+                this.board.get(i).add(new Cell(i, j));
+            }
+        }
     }
 
     public void displayBoard() {
-        for(int i = 0; i < this.board.size(); i++){
-            for(int j = 0; j < this.board.size(); j++){
-                if(board.get(i).get(j).equals(CellState.EMPTY)){
-                    System.out.println("| |");
+        for (int i = 0; i < this.board.size(); i++) {
+            for (int j = 0; j < this.board.size(); j++) {
+                if (CellState.EMPTY.equals(board.get(i).get(j).getCellState())) {
+                    System.out.print("| |");
                 } else {
-                    System.out.println("| " + board.get(i).get(j).getPlayer().getSymbol() + " |");
+                    System.out.print("| " + board.get(i).get(j).getPlayer().getSymbol() + " |");
                 }
 
             }
@@ -36,4 +36,10 @@ public class Board {
     }
 
 
+    public void applyMove(Move move) {
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+        this.getBoard().get(row).get(col).setCellState(CellState.FILLED);
+        this.getBoard().get(row).get(col).setPlayer(move.getPlayer());
+    }
 }

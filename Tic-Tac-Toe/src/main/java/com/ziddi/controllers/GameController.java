@@ -8,7 +8,7 @@ import java.util.List;
 
 public class GameController {
 
-    public Game CreateGame(int dimension, List<Player> players){
+    public Game CreateGame(int dimension, List<Player> players) {
         return Game.getBuilder()
                 .setDimension(dimension)
                 .setPlayers(players)
@@ -21,6 +21,7 @@ public class GameController {
     }
 
     public void executeNextMove(Game game) {
+        game.makeNextMove();
 
     }
 
@@ -28,11 +29,11 @@ public class GameController {
         return game.getWinner();
     }
 
-    public GameStatus getGameStatus(Game game){
+    public GameStatus getGameStatus(Game game) {
         return game.getGameStatus();
     }
 
-    public void displayBoard(Game game){
+    public void displayBoard(Game game) {
         game.displayBoard();
     }
 }
